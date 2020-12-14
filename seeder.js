@@ -33,7 +33,7 @@ let csvStream = fastcsv
 			opening_ply: data[15]
 		});
 	})
-	.on("end", function() {
+	.on("end", async function()	 {
 		csvData.shift();
 
 		mongodb.connect(MONGODB_URI, {useUnifiedTopology: true}, (err, client) => {
