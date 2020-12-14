@@ -1,31 +1,36 @@
 {
-  "name": "lichess-review",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/wConnor/lichess-review.git"
-  },
-  "author": "wConnor",
-  "license": "GPL-3.0",
-  "bugs": {
-    "url": "https://github.com/wConnor/lichess-review/issues"
-  },
-  "homepage": "https://github.com/wConnor/lichess-review#readme",
-  "dependencies": {
-    "bcrypt": "^5.0.0",
-    "dotenv": "^8.2.0",
-    "ejs": "^3.1.5",
-    "express": "^4.17.1",
-    "express-session": "^1.17.1",
-    "fast-csv": "^4.3.6",
-    "loading-cli": "^1.1.0",
-    "md5": "^2.3.0",
-    "mongodb": "^3.6.3",
-    "mongoose": "^5.11.7"
-  }
+	"name": "lichess-review",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node app.js",
+		"dev": "nodemon app.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/wConnor/lichess-review.git"
+	},
+	"author": "wConnor",
+	"license": "GPL-3.0",
+	"bugs": {
+		"url": "https://github.com/wConnor/lichess-review/issues"
+	},
+	"homepage": "https://github.com/wConnor/lichess-review#readme",
+	"dependencies": {
+		"bcrypt": "^5.0.0",
+		"body-parser": "^1.19.0",
+		"dotenv": "^8.2.0",
+		"ejs": "^3.1.5",
+		"express": "^4.17.1",
+		"express-session": "^1.17.1",
+		"fast-csv": "^4.3.6",
+		"loading-cli": "^1.1.0",
+		"md5": "^2.3.0",
+		"mongodb": "^3.6.3",
+		"mongoose": "^5.11.7",
+		"nodemon": "^2.0.6",
+		"path": "^0.12.7"
+	}
 }
