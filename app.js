@@ -6,13 +6,17 @@ const expressSession = require("express-session");
 const mongoose = require("mongoose");
 const path = require("path");
 const bodyParser = require("body-parser");
+const Game = require("./models/Game.js");
 
 // controller(s)
+const gameController = require("./controllers/game.js");
 
-// setup mongo connection and express
+// setup express and .env
 const app = express();
 const { BASE_URI, PORT, MONGODB_URI } = process.env;
 app.set("view engine", "ejs");
+
+// connect to mongodb
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connection.on("error", (err) => {
 	console.error(err);
@@ -20,13 +24,13 @@ mongoose.connection.on("error", (err) => {
 	process.exit();
 });
 
-app.use(express.static(path.join(__dirname, "public")));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.get("/", gameController.createIndex);
 
-app.get("/", (req, res) => {
-	res.render("index", { errors: {} });
-});
+app.get("/browse", gameController.createBrowse);
+
+app.get("/stats", gameController.createStats);
+
+app.get("/about", gameController.createAbout);
 
 app.listen(PORT, () => {
 	console.log("Listening at ", BASE_URI, ":", PORT);

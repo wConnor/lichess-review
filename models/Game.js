@@ -3,21 +3,22 @@ const { Schema } = mongoose;
 
 const gameSchema = new Schema(
 	{
-		rated: Boolean,
-		started: Number,
-		ended: Number,
-		moves: Number,
-		victoryStatus: String,
+		id: String,
+		rated: String,
+		created_at: String,
+		last_move_at: String,
+		turns: String,
+		victory_status: String,
 		winner: String,
-		gameType: String,
-		whiteUser: String,
-		whiteRating: Number,
-		blackUser: String,
-		blackRating: Number,
+		increment_code: String,
+		white_id: String,
+		white_rating: String,
+		black_id: String,
+		black_rating: String,
 		moves: String,
-		openingEco: String,
-		openingName: String,
-		openingPhaseMoves: Number
+		opening_eco: String,
+		opening_name: String,
+		opening_ply: String,
 	},
 	{ timestamps: true }
 );
