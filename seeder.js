@@ -46,7 +46,7 @@ let csvStream = fastcsv
 			}
 			client
 				.db("lichess-review")
-				.collection("category")
+				.collection("games")
 				.insertMany(csvData, (err, res) => {
 					if (err) throw err;		
 					client.close();
