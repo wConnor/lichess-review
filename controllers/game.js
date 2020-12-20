@@ -15,10 +15,20 @@ exports.createIndex = async (req, res) => {
 };
 
 exports.createBrowse = async (req, res) => {
-
+	const perPage = 20;
+	const limit = parseInt(req.query.limit) || 20;
+	const page = parseInt(req.query.page) || 1;
+//	const message = res.query.message;
 	try {
+		const games = await Game.find({}).skip((perPage * page) - perPage).limit(limit);
+		const count = await Game.find({}).count();
+		const numberOfPages = Math.ceil(count / perPage);
+		
 		res.render("browse.ejs", {
-			
+			games: games,
+			numberOfPages: numberOfPages,
+			currentPage: page,
+//			message: message
 		});
 	} catch (err) {
 		console.log(err);
@@ -27,7 +37,6 @@ exports.createBrowse = async (req, res) => {
 };
 
 exports.createStats = async (req, res) => {
-
 	try {
 		res.render("stats.ejs", {
 			
@@ -39,7 +48,6 @@ exports.createStats = async (req, res) => {
 };
 
 exports.createAbout = async (req, res) => {
-
 	try {
 		res.render("about.ejs", {
 			

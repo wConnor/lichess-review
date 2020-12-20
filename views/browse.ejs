@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+      />
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 	<meta name="description" content=""/>
@@ -8,12 +14,33 @@
   </head>
   <body>
 	<%- include("common/header"); -%>
-	
+	<p></p>
+	<h2 style="text-align: center">Lichess Games Dataset</h2>
 
+	<table class="table table-striped custab">
+	  <thead>
+		<tr>
+		  <th>White ID (Rating)</th>
+		  <th>Black ID (Rating)</th>
+		  <th>Rated Game?</th>
+		  <th>Turns Played</th>
+		  <th>Winner</th>
+		  <th>Victory Status</th>
+		</tr>
 
-	<p>Hello</p>
+		<% games.forEach(game => { %>
 
-
+		<tr>
+		  <td><%= game.white_id %> (<%= game.white_rating %>)</td>
+		  <td><%= game.black_id %> (<%= game.black_rating %>)</td>
+		  <td><%= game.rated %></td>
+		  <td><%= game.turns %></td>
+		  <td><%= game.winner %></td>
+		  <td><%= game.victory_status %></td>
+		</tr>
+		<% }); %>
+	  </thead>
+	</table>
 
 	<%- include("common/footer"); -%>
   </body>
