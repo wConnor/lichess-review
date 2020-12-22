@@ -18,7 +18,7 @@ exports.createBrowse = async (req, res) => {
 	const perPage = 20;
 	const limit = parseInt(req.query.limit) || 20;
 	const page = parseInt(req.query.page) || 1;
-//	const message = res.query.message;
+
 	try {
 		const games = await Game.find({}).skip((perPage * page) - perPage).limit(limit);
 		const count = await Game.find({}).count();
@@ -28,11 +28,34 @@ exports.createBrowse = async (req, res) => {
 			games: games,
 			numberOfPages: numberOfPages,
 			currentPage: page,
-//			message: message
 		});
 	} catch (err) {
 		console.log(err);
 	}
+
+};
+
+exports.deleteGame = async (req, res) => {
+	try {
+		await Game.findByIdAndRemove(req.params.id);
+		res.redirect("/browse");
+	} catch (err) {
+		
+		res.status(404).send({ message: `Could not delete record ${req.params.id}.`, });
+		console.log(err);
+	}
+};
+
+exports.updateGame = async (req, res) => {
+	// try {
+	// 	const game = await Game.findById(id);
+	// 	if (!game) {
+	// 		throw Error("Unable to find game \'", game);
+	// 	}
+	// 	res.render("");
+	// } catch (err) {
+		
+	// }
 
 };
 

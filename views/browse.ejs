@@ -27,6 +27,10 @@
 	<p></p>
 	<h2 style="text-align: center">Lichess Games Dataset</h2>
 
+	<button class="btn btn-success">Create</button>
+
+	<p></p>
+
 	<table class="table table-striped custab">
 	  <thead>
 		<tr>
@@ -47,6 +51,8 @@
 		  <td><%= game.turns %></td>
 		  <td><%= game.winner %></td>
 		  <td><%= game.victory_status %></td>
+          <td class="text-center"><a class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit"></span>Edit</a> 
+            <a href="/browse/delete/<%= game.id %>" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>Delete</a></td>
 		</tr>
 		<% }); %>
 	  </thead>

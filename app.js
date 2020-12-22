@@ -27,6 +27,8 @@ mongoose.connection.on("error", (err) => {
 app.get("/", gameController.createIndex);
 
 app.get("/browse", gameController.createBrowse);
+app.get("/browse/delete/:id", gameController.deleteGame);
+app.get("/browse/update/:id", gameController.updateGame);
 
 app.get("/stats", gameController.createStats);
 
