@@ -15,7 +15,7 @@ let csvStream = fastcsv
 	.parse()
 	.on("data", function(data) {
 		csvData.push({
-			id: data[0],
+			match_id: data[0],
 			rated: data[1],
 			created_at: data[2],
 			last_move_at: data[3],
