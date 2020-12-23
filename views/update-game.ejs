@@ -26,7 +26,7 @@
 	</nav>
 
 	<form method="POST">
-	  <div class="form-group">
+	  <div style="padding:10px">
 		<label for="match_id"><b>Lichess Match ID</b></label>
 		<input
 		  value="<%= game.match_id %>"
@@ -68,8 +68,8 @@
 		  value="<%= game.black_rating %>"
 		  type="text"
 		  class="form-control"
-		  id="black_id"
-		  name="black_id"
+		  id="black_rating"
+		  name="black_rating"
 		  placeholder="Rating">
 
 		<label><b>Rated Game</b></label><br>
@@ -94,42 +94,66 @@
 		  name="turns"
 		  placeholder="Turns">
 
-		<label for="winner"><b>Winner</b></label>
-		<input
-		  value="<%= game.winner %>"
-		  type="text"
-		  class="form-control"
-		  id="winner"
-		  name="winner"
-		  placeholder="Winner">
-
-
+		<label><b>Winner</b></label><br>
+		<% if (game.winner == "white") { %>
+		<input type="radio" id="white" name="winner" value="white" checked>
+		<label for="white">white</label><br>
+		<input type="radio" id="black" name="winner" value="black">
+		<label for="black">black</label><br>
+		<input type="radio" id="draw" name="winner" value="draw">
+		<label for="black">draw</label><br>
+		<% } else if (game.winner == "black") { %>
+		<input type="radio" id="white" name="winner" value="white">
+		<label for="white">white</label><br>
+		<input type="radio" id="black" name="winner" value="black" checked>
+		<label for="black">black</label><br>
+		<input type="radio" id="draw" name="winner" value="draw">
+		<label for="black">draw</label><br>
+		<% } else { %>
+		<input type="radio" id="white" name="winner" value="white">
+		<label for="white">white</label><br>
+		<input type="radio" id="black" name="winner" value="black">
+		<label for="black">black</label><br>
+		<input type="radio" id="draw" name="winner" value="draw" checked>
+		<label for="black">draw</label><br>
+		<% } %>
+		
 		<label><b>Victory Status</b></label><br>
 		<% if (game.victory_status == "mate") { %>
-		<input type="radio" id="mate" name="victory" value="mate" checked>
+		<input type="radio" id="mate" name="victory_status" value="mate" checked>
 		<label for="mate">checkmate</label><br>
-		<input type="radio" id="resign" name="victory" value="resign">
+		<input type="radio" id="resign" name="victory_status" value="resign">
 		<label for="resign">resign</label><br>
-		<input type="radio" id="draw" name="victory" value="draw">
+		<input type="radio" id="draw" name="victory_status" value="draw">
 		<label for="draw">draw</label><br>
-
 		<% } else if (game.victory_status == "resign"){ %>
-		<input type="radio" id="mate" name="victory" value="mate">
+		<input type="radio" id="mate" name="victory_status" value="mate">
 		<label for="mate">checkmate</label><br>
-		<input type="radio" id="resign" name="victory" value="resign" checked>
+		<input type="radio" id="resign" name="victory_status" value="resign" checked>
 		<label for="resign">resign</label><br>
-		<input type="radio" id="draw" name="victory" value="draw">
+		<input type="radio" id="draw" name="victory_status" value="draw">
 		<label for="draw">draw</label><br>
-
 		<% } else { %>
-		<input type="radio" id="mate" name="victory" value="mate">
+		<input type="radio" id="mate" name="victory_status" value="mate">
 		<label for="mate">checkmate</label><br>
-		<input type="radio" id="resign" name="victory" value="resign">
+		<input type="radio" id="resign" name="victory_status" value="resign">
 		<label for="resign">resign</label><br>
-		<input type="radio" id="draw" name="victory" value="draw" checked>
+		<input type="radio" id="draw" name="victory_status" value="draw" checked>
 		<label for="draw">draw</label><br>
 		<% } %>
 
+		<label for="moves"><b>Moves</b></label>
+		<input
+		  value="<%= game.moves %>"
+		  type="text"
+		  class="form-control"
+		  id="moves"
+		  name="moves"
+		  placeholder="Moves">
+
+	    <br><button type="submit" class="btn btn-primary">Update</button>
+	</form>
+	
 	<%- include("common/footer"); -%>
   </body>
 </html>

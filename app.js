@@ -15,6 +15,8 @@ const gameController = require("./controllers/game.js");
 const app = express();
 const { BASE_URI, PORT, MONGODB_URI } = process.env;
 app.set("view engine", "ejs");
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
 
 // connect to mongodb
@@ -31,7 +33,8 @@ app.get("/", gameController.createIndex);
 app.get("/browse", gameController.createBrowse);
 app.get("/browse/delete/:id", gameController.deleteGame);
 app.get("/browse/update/:id", gameController.editGame);
-app.get("/update-game/:id", gameController.editGame);
+app.post("/browse/update/:id", gameController.updateGame);
+
 
 app.get("/stats", gameController.createStats);
 

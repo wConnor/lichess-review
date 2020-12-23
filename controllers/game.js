@@ -23,11 +23,13 @@ exports.createBrowse = async (req, res) => {
 		const games = await Game.find({}).skip((perPage * page) - perPage).limit(limit);
 		const count = await Game.find({}).countDocuments();
 		const numberOfPages = Math.ceil(count / perPage);
+		const message = req.query.message;
 		
 		res.render("browse.ejs", {
 			games: games,
 			numberOfPages: numberOfPages,
 			currentPage: page,
+			message: message
 		});
 	} catch (err) {
 		console.log(err);
@@ -54,6 +56,17 @@ exports.editGame = async (req, res) => {
 		res.status(404).send({ message: `Unable to find game '${req.params.id}`});
 	}
 };
+
+exports.updateGame = async (req, res) => {
+	try {
+		const game = await Game.updateOne({ _id: req.params.id}, req.body);
+		console.log(req.body);
+		res.redirect("/browse/?message=Updated");
+	} catch (err) {
+		res.status(404).send({ message: `Unable to find game '${req.params.id}`});
+	}
+};
+
 
 exports.createStats = async (req, res) => {
 	try {
