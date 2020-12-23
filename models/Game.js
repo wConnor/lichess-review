@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 const gameSchema = new Schema(
 	{
-		game_id: String,
+		match_id: String,
 		rated: String,
 		created_at: String,
 		last_move_at: String,

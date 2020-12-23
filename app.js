@@ -15,6 +15,7 @@ const gameController = require("./controllers/game.js");
 const app = express();
 const { BASE_URI, PORT, MONGODB_URI } = process.env;
 app.set("view engine", "ejs");
+app.use(express.static(__dirname + '/public'));
 
 // connect to mongodb
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -26,9 +27,11 @@ mongoose.connection.on("error", (err) => {
 
 app.get("/", gameController.createIndex);
 
+// creating, reading, updating and deleting from the dataset
 app.get("/browse", gameController.createBrowse);
 app.get("/browse/delete/:id", gameController.deleteGame);
-app.get("/browse/update/:id", gameController.updateGame);
+app.get("/browse/update/:id", gameController.editGame);
+app.get("/update-game/:id", gameController.editGame);
 
 app.get("/stats", gameController.createStats);
 

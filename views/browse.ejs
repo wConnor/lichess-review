@@ -10,9 +10,7 @@
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 	<meta name="description" content=""/>
-	<title>lichess Review - Browse</title>
-  </head>
-  <body>
+	<link rel="stylesheet" href="main.css">
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="/">lichess Review</a>
       <div class="navbar">
@@ -24,6 +22,9 @@
 		</div>
       </div>
 	</nav>
+	<title>lichess Review - Browse</title>
+  </head>
+  <body>
 	<p></p>
 	<h2 style="text-align: center">Lichess Games Dataset</h2>
 
@@ -51,7 +52,7 @@
 		  <td><%= game.turns %></td>
 		  <td><%= game.winner %></td>
 		  <td><%= game.victory_status %></td>
-          <td class="text-center"><a class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit"></span>Edit</a> 
+          <td class="text-center"><a href="/browse/update/<%= game._id %>" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit"></span>Edit</a> 
             <a href="/browse/delete/<%= game.id %>" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>Delete</a></td>
 		</tr>
 		<% }); %>

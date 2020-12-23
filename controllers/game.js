@@ -21,7 +21,7 @@ exports.createBrowse = async (req, res) => {
 
 	try {
 		const games = await Game.find({}).skip((perPage * page) - perPage).limit(limit);
-		const count = await Game.find({}).count();
+		const count = await Game.find({}).countDocuments();
 		const numberOfPages = Math.ceil(count / perPage);
 		
 		res.render("browse.ejs", {
@@ -46,17 +46,13 @@ exports.deleteGame = async (req, res) => {
 	}
 };
 
-exports.updateGame = async (req, res) => {
-	// try {
-	// 	const game = await Game.findById(id);
-	// 	if (!game) {
-	// 		throw Error("Unable to find game \'", game);
-	// 	}
-	// 	res.render("");
-	// } catch (err) {
-		
-	// }
-
+exports.editGame = async (req, res) => {
+	try {
+		const game = await Game.findById(req.params.id);
+		res.render("update-game", { game: game, id: req.params.id });
+	} catch (err) {
+		res.status(404).send({ message: `Unable to find game '${req.params.id}`});
+	}
 };
 
 exports.createStats = async (req, res) => {
