@@ -35,6 +35,7 @@
 	<table class="table table-striped custab">
 	  <thead>
 		<tr>
+		  <th>Lichess Match ID</th>
 		  <th>White ID (Rating)</th>
 		  <th>Black ID (Rating)</th>
 		  <th>Rated Game?</th>
@@ -46,6 +47,7 @@
 		<% games.forEach(game => { %>
 
 		<tr>
+		  <td><a href="https://www.lichess.org/<%= game.match_id %>"><%= game.match_id %></a></td>
 		  <td><%= game.white_id %> (<%= game.white_rating %>)</td>
 		  <td><%= game.black_id %> (<%= game.black_rating %>)</td>
 		  <td><%= game.rated %></td>
