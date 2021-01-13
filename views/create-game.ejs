@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<link
+	  rel="stylesheet"
+	  href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	  integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	  crossorigin="anonymous"
+	  />
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+	<meta name="description" content=""/>
+	<title>lichess Review - Create Game</title>
+  </head>
+  <body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	  <a class="navbar-brand" href="/">lichess Review</a>
+	  <div class="navbar">
+		<div class="navbar-nav">
+		  <a class="nav-link" href="/"> Home</a>
+		  <a class="nav-link active" href="/browse">Browse Data</a>
+		  <a class="nav-link" href="/stats">Statistics</a>
+		  <a class="nav-link" href="/about">About</a>
+		</div>
+	  </div>
+	</nav>
+
+	<form method="POST">
+	  <div style="padding:10px">
+		<label for="match_id"><b>Lichess Match ID</b></label>
+		<input
+		  value=""
+		  type="text"
+		  class="form-control"
+		  id="match_id"
+		  name="match_id"
+		  placeholder="Lichess Match ID">
+
+		<label for="white_id"><b>White ID</b></label>
+		<input
+		  value=""
+		  type="text"
+		  class="form-control"
+		  id="white_id"
+		  name="white_id"
+		  placeholder="ID">
+
+		<label for="white_rating"><b>White Rating</b></label>
+		<input
+		  value=""
+		  type="text"
+		  class="form-control"
+		  id="white_rating"
+		  name="white_rating"
+		  placeholder="Rating">
+
+		<label for="black_id"><b>Black ID</b></label>
+		<input
+		  value=""
+		  type="text"
+		  class="form-control"
+		  id="black_id"
+		  name="black_id"
+		  placeholder="ID">
+
+		<label for="black_id"><b>Black Rating</b></label>
+		<input
+		  value=""
+		  type="text"
+		  class="form-control"
+		  id="black_rating"
+		  name="black_rating"
+		  placeholder="Rating">
+
+		<label><b>Rated Game</b></label><br>
+		<input type="radio" id="TRUE" name="rated" value="TRUE" checked>
+		<label for="TRUE">TRUE</label><br>
+		<input type="radio" id="FALSE" name="rated" value="FALSE">
+		<label for="FALSE">FALSE</label><br>
+
+		<label for="turns"><b>Turns Played</b></label>
+		<input
+		  value=""
+		  type="text"
+		  class="form-control"
+		  id="turns"
+		  name="turns"
+		  placeholder="Turns">
+
+		<label><b>Winner</b></label><br>
+		<input type="radio" id="white" name="winner" value="white" checked>
+		<label for="white">white</label><br>
+		<input type="radio" id="black" name="winner" value="black">
+		<label for="black">black</label><br>
+		<input type="radio" id="draw" name="winner" value="draw">
+		<label for="black">draw</label><br>
+		
+		<label><b>Victory Status</b></label><br>
+		<input type="radio" id="mate" name="victory_status" value="mate" checked>
+		<label for="mate">checkmate</label><br>
+		<input type="radio" id="resign" name="victory_status" value="resign">
+		<label for="resign">resign</label><br>
+		<input type="radio" id="draw" name="victory_status" value="draw">
+		<label for="draw">draw</label><br>
+
+		<label for="moves"><b>Moves</b></label>
+		<input
+		  value=""
+		  type="text"
+		  class="form-control"
+		  id="moves"
+		  name="moves"
+		  placeholder="Moves">
+
+	    <br><button type="submit" class="btn btn-primary">Create</button>
+	</form>
+	
+	<%- include("common/footer"); -%>
+  </body>
+</html>

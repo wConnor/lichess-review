@@ -37,6 +37,35 @@ exports.createBrowse = async (req, res) => {
 
 };
 
+exports.createGame = async (req, res) => {
+	try {
+		const newGame = await Game.findById(req.body.game_id);
+		await Game.create({
+			match_id: req.body.match_id,
+			rated: req.body.rated,
+			turns: req.body.turns,
+			victory_status: req.body.victory_status,
+			winner: req.body.winner,
+			white_id: req.body.white_id,
+			white_rating: req.body.white_rating,
+			black_id: req.body.black_id,
+			black_rating: req.body.black_rating,
+			moves: req.body.moves
+		});
+		res.redirect("/browse/?message=Created");
+	} catch (err) {
+		res.status(404).send({ message: `Unable to create game '${req.params.id}`});
+	}
+};
+
+exports.createGameView = async (req, res) => {
+	try {
+		res.render("create-game");
+	} catch (err) {
+		res.status(404).send({ message: `Unable to create game view: '${req.params.id}`});
+	}
+};
+
 exports.deleteGame = async (req, res) => {
 	try {
 		await Game.findByIdAndRemove(req.params.id);

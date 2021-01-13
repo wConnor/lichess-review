@@ -31,10 +31,11 @@ app.get("/", gameController.createIndex);
 
 // creating, reading, updating and deleting from the dataset
 app.get("/browse", gameController.createBrowse);
+app.get("/create-game", gameController.createGameView);
+app.post("/create-game", gameController.createGame);
 app.get("/browse/delete/:id", gameController.deleteGame);
 app.get("/browse/update/:id", gameController.editGame);
 app.post("/browse/update/:id", gameController.updateGame);
-
 
 app.get("/stats", gameController.createStats);
 
