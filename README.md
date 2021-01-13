@@ -28,5 +28,5 @@ The time it takes to get dependencies and import the data will depend on the spe
 
 To finally run the app, enter the following from the machine that is serving the app: 
 ```
-$ npm run
+$ npm start
 ```
