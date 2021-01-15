@@ -38,8 +38,8 @@ let csvStream = fastcsv
 
 		mongodb.connect(MONGODB_URI, {useUnifiedTopology: true}, (err, client) => {
 			if (err) {
-				throw err;
 				importMessage.fail("Failed to connect to MongoDB. Make sure the MongoDB service is running.");
+				throw err;
 			} else {
 				console.log("Connected to ", MONGODB_URI);
 				importMessage.start();
@@ -53,6 +53,7 @@ let csvStream = fastcsv
 					importMessage.succeed(`Successfully imported ${res.insertedCount} sets of data.`);
 				});
 		});
+			
 	});
 
 stream.pipe(csvStream);

@@ -4,7 +4,6 @@ const bodyParser = require("body-parser");
 exports.createIndex = async (req, res) => {
 	try {
 		const totalGames = await Game.countDocuments({});
-
 		res.render("index.ejs", {
 			totalGames: totalGames
 		});
@@ -15,9 +14,13 @@ exports.createIndex = async (req, res) => {
 };
 
 exports.createBrowse = async (req, res) => {
-	const perPage = 20;
-	const limit = parseInt(req.query.limit) || 20;
+	const perPage = 15;
+	const limit = parseInt(req.query.limit) || 15;
 	const page = parseInt(req.query.page) || 1;
+
+	const games = await Game.find({}).skip((perPage * page) - perPage).limit(limit);
+    const count = await Game.find({}).count();
+    const numberOfPages = Math.ceil(count / perPage);
 
 	try {
 		const games = await Game.find({}).skip((perPage * page) - perPage).limit(limit);
@@ -96,11 +99,34 @@ exports.updateGame = async (req, res) => {
 	}
 };
 
-
 exports.createStats = async (req, res) => {
+	const pipeline = [
+		{
+			$group: {
+				_id: '',
+				white_rating: { $sum: '$white_rating' },
+				black_rating: { $sum: '$black_rating' },
+				turns: { $sum: '$turns' } } },
+		{
+			$project: {
+				_id: 0,
+				white_rating: '$white_rating',
+				black_rating: '$black_rating',
+				turns: '$turns'
+			}
+		}
+	];
+	const totalGames = await Game.countDocuments({});
+	const aggCursor = await Game.aggregate(pipeline);
+	const percentRated = (await Game.find({ rated: "TRUE" }).count() / totalGames) * 100;
+
+	console.log(`${aggCursor}`);
+
 	try {
 		res.render("stats.ejs", {
-			
+			aggCursor: aggCursor,
+			totalGames: totalGames,
+			percentRated: percentRated
 		});
 	} catch (err) {
 		console.log(err);

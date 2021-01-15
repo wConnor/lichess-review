@@ -7,10 +7,11 @@
       integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
       crossorigin="anonymous"
       />
+	<link rel="stylesheet" href="stats.css">
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 	<meta name="description" content=""/>
-	<title>lichess Review</title>
+	<title>lichess Review - Statistics</title>
   </head>
   <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -25,8 +26,37 @@
       </div>
 	</nav>
 	
-	<p>Statistics</p>
+	<table>
+	  <tr>
+		<th>Total Games in Database</th>
+		<td><%= totalGames %></td>
+	  </tr>
+	  <tr>
+		<th>Average White Rating</th>
+		<% aggCursor.forEach(rating => { %>
+		<td><%= rating.white_rating / totalGames %></td>
+		<% }); %>
+	  </tr>
 
+	  <tr>
+		<th>Average Black Rating</th>
+		<% aggCursor.forEach(rating => { %>
+		<td><%= rating.black_rating / totalGames %></td>
+		<% }); %>
+	  </tr>
+	  <tr>
+		<th>Average Turns</th>
+		<% aggCursor.forEach(rating => { %>
+		<td><%= rating.turns / totalGames %></td>
+		<% }); %>
+	  </tr>
+	  <tr>
+		<th>% Ranked Games</th>
+		<td><%= percentRated %>%</td>
+	  </tr>
+
+	  
+	</table>
 
 
 	<%- include("common/footer"); -%>
