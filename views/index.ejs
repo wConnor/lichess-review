@@ -25,8 +25,24 @@
       </div>
 	</nav>
 	
-	<p>Analysing lichess data from <strong><%= totalGames %></strong> matches!</p>
+	<h3>Welcome to lichess Review!</h3>
+	<p>lichess Review is a very basic web app that has been designed for a user to manipulate data from a lichess dataset of <strong><%= totalGames %></strong> matches!</p>
+	<p>To start, click on 'Browse Data' above to see some of the matches that have been imported into this web app.</p>
 
+	<h4>Random Match</h4>
+	<p>Here's a random match from the dataset:</p>
+	<ul>
+	<% randomGame.forEach(function (game) { %>
+	<li>Lichess Match ID: <a href="https://lichess.org/<%= game.match_id %>"><%= game.match_id %></a></li>
+	<li>White ID: <%= game.white_id %></li>
+	<li>White Rating: <%= game.white_rating %></li>
+	<li>Black ID: <%= game.black_id %></li>
+	<li>Black Rating: <%= game.black_rating %></li>
+	<li>Turns Played: <%= game.turns %></li>
+	<li>Winner:<%= game.winner %></li>
+	<li>Victory Status:<%= game.victory_status %></li>
+	<% }); %>
+	</ul>
 	<%- include("common/footer"); -%>
   </body>
 </html>

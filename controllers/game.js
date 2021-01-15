@@ -4,7 +4,10 @@ const bodyParser = require("body-parser");
 exports.createIndex = async (req, res) => {
 	try {
 		const totalGames = await Game.countDocuments({});
+		const randomGame = await Game.aggregate([ {$sample: {size: 1 } }]);
+		console.log(randomGame);
 		res.render("index.ejs", {
+			randomGame: randomGame,
 			totalGames: totalGames
 		});
 	} catch (err) {
@@ -57,7 +60,7 @@ exports.createGame = async (req, res) => {
 		});
 		res.redirect("/browse/?message=Created");
 	} catch (err) {
-		res.status(404).send({ message: `Unable to create game '${req.params.id}`});
+		res.status(404).send({ message: `Unable to create game '${req.params.id}. ERROR(S): ${err}`});
 	}
 };
 
@@ -65,7 +68,7 @@ exports.createGameView = async (req, res) => {
 	try {
 		res.render("create-game");
 	} catch (err) {
-		res.status(404).send({ message: `Unable to create game view: '${req.params.id}`});
+			res.status(404).send({ message: `Unable to create game view '${req.params.id}. ERROR(S): ${err}`});
 	}
 };
 
