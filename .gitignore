@@ -1,3 +1,5 @@
 .env
 node_modules
 .~lock.games.csv#
+*documentation*
+images
